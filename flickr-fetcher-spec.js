@@ -13,8 +13,10 @@ describe('FlickrFetcher', function() {
 // this test passes even though there's nothing in flickr-fetcher
 // just because the file exists
 
-describe('#photoObjectToURL', function () {
-  it ('shoudl take a photo object from Flickr API and return a string', function() {
+
+// # because the function is a method in FlickrFetcher
+describe('#photoObjectToURL', function() {
+  it ('should take a photo object from Flickr API and return a string', function() {
     let input = {
         id:       '24770505034',
         owner:    '97248275@N03',
@@ -49,4 +51,29 @@ describe('#photoObjectToURL', function () {
 
 // eql checks every value inside actual to be equal to be expected
 // use equal for strings, numbers, booleans, and eql for arrays and objects
+
+
+describe("#transformPhotoObject", function() {
+  it ('should take an input photo object and return an object with title and generated URL', function() {
+    let input = {
+      id: '25373736106',
+      owner: '99117316@N03',
+      secret: '146731fcb7',
+      server: '1669',
+      farm: 2,
+      title: 'Dog goes to desperate measure to avoid walking on a leash',
+      ispublic: 1,
+      isfriend: 0,
+      isfamily: 0
+    }
+    let expected = {
+      title: 'Dog goes to desperate measure to avoid walking on a leash',
+      url:   'https://farm2.staticflickr.com/1669/25373736106_146731fcb7_b.jpg'
+    },
+    actual = FlickrFetcher.transformPhotoObj(input);
+    expect(actual).to.eql(expected);
+  })
+})
+
+
 
