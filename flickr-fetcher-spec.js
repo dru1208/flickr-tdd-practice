@@ -15,7 +15,7 @@ describe('FlickrFetcher', function() {
 
 describe('#photoObjectToURL', function () {
   it ('shoudl take a photo object from Flickr API and return a string', function() {
-    const input = {
+    let input = {
         id:       '24770505034',
         owner:    '97248275@N03',
         secret:   '31a9986429',
@@ -26,11 +26,27 @@ describe('#photoObjectToURL', function () {
         isfriend: 0,
         isfamily: 0
     };
-    const expected = 'https://farm2.staticflickr.com/1577/24770505034_31a9986429_b.jpg'
-    const actual = FlickrFetcher.photoObjectToURL(input)
+    let expected = 'https://farm2.staticFlickr.com/1577/24770505034_31a9986429_b.jpg'
+    let actual = FlickrFetcher.photoObjectToURL(input)
+    expect(actual).to.eql(expected)
+
+    input = {
+      id:       '24770504484',
+      owner:    '97248275@N03',
+      secret:   '69dd90d5dd',
+      server:   '1451',
+      farm:     2,
+      title:    '20160229090903',
+      ispublic: 1,
+      isfriend: 0,
+      isfamily: 0
+    };
+    expected = 'https://farm2.staticFlickr.com/1451/24770504484_69dd90d5dd_b.jpg'
+    actual = FlickrFetcher.photoObjectToURL(input)
     expect(actual).to.eql(expected)
   })
 })
 
 // eql checks every value inside actual to be equal to be expected
 // use equal for strings, numbers, booleans, and eql for arrays and objects
+
